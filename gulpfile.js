@@ -7,6 +7,7 @@ const util = require('gulp-util');
 const plumber = require('gulp-plumber');
 const browserSync = require('browser-sync');
 const connect = require('gulp-connect');
+const imgmin = require('gulp-imagemin');
 const reload = browserSync.reload;
 const exec0 = require('child_process').exec;
 
@@ -37,6 +38,14 @@ gulp.task('browserify', function () {
 		.pipe(reload({stream: true}));
 });
 
+gulp.task('img', function () {
+	return gulp.src('src/asset/img/*.*')
+		.pipe(plumber({
+			errorHandler: onError
+		}))
+		.pipe(imgmin())
+		.pipe(gulp.dest('public/img'));
+});
 gulp.task('less', function(){
 	return gulp.src('src/less/main.less')
 		.pipe(plumber({
@@ -62,10 +71,12 @@ gulp.task('watch', function(){
 	gulp.start('browser-sync');
 	gulp.watch('./src/less/*.less', ['less', reload]);
 	gulp.watch('./src/js/**/*.js', ['browserify', reload]);
+	gulp.watch('./src/asset/img/*.*', ['img', reload]);
 	gulp.watch('./src/*.html', ['copy'], reload);
 });
 
 gulp.task('server', function(){
 	gulp.start('connectDev');
+	exec0('open http://localhost:3000');
 	return gulp.start('watch');
 });
