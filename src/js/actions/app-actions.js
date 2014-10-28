@@ -2,6 +2,12 @@ var AppConstants = require('../constants/app-constants.js');
 var AppDispatcher = require('../dispatcher/app-dispatcher.js');
 
 var AppActions = {
+	paginate: function (value) {
+		AppDispatcher.handleViewAction({
+			actionType: AppConstants.PAGINATE,
+			value: value
+		});
+	},
 	editText: function (text) {
 		AppDispatcher.handleViewAction({
 			actionType: AppConstants.EDIT_TEXT,

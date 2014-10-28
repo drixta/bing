@@ -18,7 +18,7 @@ var APP = React.createClass({
 		return getBackground();
 	},
 	componentWillMount: function(){
-		AppStore.addChangeListener(this._onChange);
+		AppStore.addSubmitListener(this._onChange);
 	},
 	_onChange: function(){
 		this.setState(getBackground());

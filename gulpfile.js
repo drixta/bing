@@ -8,7 +8,9 @@ const plumber = require('gulp-plumber');
 const browserSync = require('browser-sync');
 const connect = require('gulp-connect');
 const imgmin = require('gulp-imagemin');
+const uglify = require('gulp-uglify');
 const reload = browserSync.reload;
+const cssmin = require('gulp-cssmin');
 const exec0 = require('child_process').exec;
 
 var onError = function (err){
@@ -27,6 +29,10 @@ gulp.task('connectDev', function () {
   });
 });
 
+gulp.task('test', function(){
+	exec0('open test/test.html');
+});
+
 gulp.task('browserify', function () {
 	return gulp.src('src/js/main.js')
 		.pipe(plumber({
@@ -35,6 +41,8 @@ gulp.task('browserify', function () {
 		.pipe(browserify({transform: 'reactify'}))
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest('public/js'))
+		.pipe(uglify())
+		.pipe(gulp.dest('public/js/min'))
 		.pipe(reload({stream: true}));
 });
 
@@ -56,6 +64,8 @@ gulp.task('less', function(){
             browsers: ['last 2 versions'],
         }))
 		.pipe(gulp.dest('public/css'))
+		.pipe(cssmin())
+		.pipe(gulp.dest('public/css/min'))
 		.pipe(reload({stream: true}));
 });
 
@@ -65,11 +75,11 @@ gulp.task('copy', function(){
 		.pipe(reload({stream: true}));
 });
 
-gulp.task('default', ['browserify','copy','less']);
+gulp.task('default', ['browserify','copy','less','img']);
 
 gulp.task('watch', function(){
 	gulp.start('browser-sync');
-	gulp.watch('./src/less/*.less', ['less', reload]);
+	gulp.watch('./src/less/*.less', ['less']);
 	gulp.watch('./src/js/**/*.js', ['browserify', reload]);
 	gulp.watch('./src/asset/img/*.*', ['img', reload]);
 	gulp.watch('./src/*.html', ['copy'], reload);

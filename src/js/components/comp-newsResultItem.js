@@ -50,13 +50,13 @@ var NewsResultItem = React.createClass({
 				<h2>
 					<a href={res.Url}>{res.Title}</a>
 				</h2>
-				<p>
+				<p className="news-description">
 					{res.Description}
 				</p>
-				<p>
+				<p className="news-source">
 					{res.Source}
 				</p>
-				<p>
+				<p className="news-time">
 					{this.processDate(res.Date)}
 				</p>
 			</div>

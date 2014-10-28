@@ -13,7 +13,6 @@ var ResultList = React.createClass({
 		var results = this.props.results;
 		var scope = this.props.scope;
 		var list;
-		console.log(this.props);
 		switch (scope) {
 			case 'Web':
 				list = results.map(function(result){

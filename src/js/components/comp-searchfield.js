@@ -38,7 +38,7 @@ var SearchField = React.createClass({
 		}
 		return (
 			<div className={searchFieldClass} id="search-field">
-				<img id="bing-logo"src="../img/bing-logo.svg" onerror="this.onerror=null; this.src='../img/bing-logo.png'" onClick={this.handleLogoClick}/>
+				<img id="bing-logo"src="./img/bing-logo.svg" onerror="this.onerror=null; this.src='./img/bing-logo.png'" onClick={this.handleLogoClick}/>
 				<form onSubmit={this.handleSubmit}>
 					<TextBox text = {data.text}/>
 					<SubmitButton />

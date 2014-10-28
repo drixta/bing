@@ -37,6 +37,9 @@ form {
 	margin-right: 50px;
 	margin-bottom: 20px;
 }
+#no-result {
+	margin-left: 100px;
+}
 .center-screen {
 	position: absolute;
 	top: 35%;
@@ -46,6 +49,7 @@ form {
 		border: 0;
 	}
 	#bing-logo {
+		cursor: initial;
 		display: inline-block;
 		width: 200px;
 		vertical-align: middle;
@@ -65,7 +69,8 @@ form {
 	}
 }
 #bing-logo {
-	width: 100px;
+	cursor: pointer;
+	width: 60px;
 	margin: 20px 20px 20px 20px;
 }
 #bing-search-button {
@@ -93,10 +98,66 @@ form {
 	min-width: 600px;
 	border: 0;
 }
+#result-list {
+	margin: 20px 60px;
+	margin-left: 100px;
+}
+.web-item {
+	width: 50%;
+	h2	{
+		font-size: 18px;
+		margin-bottom: 3px;
+	}
+	cite {
+		font-style: normal;
+		color: green;
+		font-size: 14px;
+	}
+	p {
+		margin-top: 5px;
+		margin-bottom: 30px;
+		font-size: 14px;
+	}
+}
+.image-item {
+	display: inline-block;
+	height: 150px;
+	img {
+		width: auto;
+		height: 100%;
+	}
+}
+.news-item {
+	width: 50%;
+	h2	{
+		font-size: 18px;
+		margin-bottom: 3px;
+	}
+	p {
+		margin: 5px 0px;
+		font-size: 14px;
+	}
+	.news-description {
+		&:after {
+			content: ' ...';
+		}
+	}
+	.news-source, .news-time {
+		display: inline-block;
+		color: #ccc;
+		font-size: 10px;
+	}
+	.news-time {
+		&:before {
+			content: '·';
+			margin: 0px 5px;
+		}
+	}
+}
 #scope-list {
 	background-color: @gray_dark;
 	padding: 10px;
-	padding-left: 50px;
+	padding-left: 100px;
 	color: white;
 	input {
 		display: none;
@@ -108,5 +169,15 @@ form {
 		&.active {
 			border-bottom: 2px solid @yellow;
 		}
+	}
+}
+.pagination {
+	margin-left: 100px;
+	button {
+		margin-right: 100px;
+		background: white;
+		color: #ccc;
+		padding: 5px;
+		border: 0;
 	}
 }
